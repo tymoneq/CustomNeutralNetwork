@@ -1,0 +1,3 @@
+/home/tymon/coding/CustomNeutralNetwork/build/CMakeFiles/myapp.dir
+/home/tymon/coding/CustomNeutralNetwork/build/CMakeFiles/edit_cache.dir
+/home/tymon/coding/CustomNeutralNetwork/build/CMakeFiles/rebuild_cache.dir
