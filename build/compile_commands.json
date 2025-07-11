@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/tymon/coding/CustomNeutralNetwork/build",
+  "command": "/usr/bin/g++ -DDEBUG -isystem /usr/include/eigen3  -g -O0 -g -std=gnu++17 -o CMakeFiles/myapp.dir/main.cpp.o -c /home/tymon/coding/CustomNeutralNetwork/main.cpp",
+  "file": "/home/tymon/coding/CustomNeutralNetwork/main.cpp"
+}
+]
