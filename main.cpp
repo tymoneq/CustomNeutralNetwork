@@ -9,10 +9,17 @@ int main()
 
     vector<int> topology = {3, 2, 4, 1};
 
-    NeutralNetwork MyNetwork(topology, 0.05, SIGMOID);
+    Activation activationFunction = SIGMOID;
 
-    MyNetwork.initialize_weights();
-    MyNetwork.print_weights();
+    NeutralNetwork MyNetwork(topology, 0.05, activationFunction);
+
+    MyNetwork.initializeWeights();
+    MyNetwork.printValues();
+
+    vector<double> data = {5, 3, 4};
+
+    MyNetwork.train(1, data);
+    MyNetwork.printValues();
 
     return 0;
 }

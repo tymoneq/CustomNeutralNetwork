@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/g++
 CXX_DEFINES = -DDEBUG
 
-CXX_INCLUDES = -isystem /usr/include/eigen3
+CXX_INCLUDES = -I/home/tymon/coding/CustomNeutralNetwork/include
 
 CXX_FLAGS =  -g -O0 -g -std=gnu++17
 

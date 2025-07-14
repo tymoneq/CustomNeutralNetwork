@@ -4,26 +4,26 @@
 #include <vector>
 
 using namespace std;
-
+enum Activation
+{
+    SIGMOID,
+    TANH,
+    RELU,
+    ELU,
+    SELU,
+    SWISH,
+};
 class NeutralNetwork
 {
 public:
-    enum Activation
-    {
-        SIGMOID,
-        TANH,
-        RELU,
-        ELU,
-        SELU,
-        SWISH,
-    };
     NeutralNetwork(const vector<int> &topology, double learningRate, Activation activation);
     ~NeutralNetwork();
 
-    void initialize_weights();
-    void print_weights();
+    void initializeWeights();
+    void printValues();
     double activation(double x);
-    void train(int epochs);
+    void train(int epochs, const vector<double> &data);
+    void forwardPropagation();
 
 private:
     vector<vector<double>> weights;

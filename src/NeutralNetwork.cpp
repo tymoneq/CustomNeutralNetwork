@@ -2,6 +2,7 @@
 #include <cmath>
 #include <iostream>
 #include <random>
+#include <stdexcept>
 
 using namespace std;
 
@@ -16,7 +17,7 @@ NeutralNetwork::NeutralNetwork(const vector<int> &topology, double learningRate 
     this->values.resize(topology.size());
 }
 
-void NeutralNetwork::initialize_weights()
+void NeutralNetwork::initializeWeights()
 {
     uniform_real_distribution<double> unif(0, 1);
 
@@ -34,16 +35,18 @@ void NeutralNetwork::initialize_weights()
                 double bias = unif(re);
                 this->bias[i].emplace_back(bias);
             }
+            else
+                this->bias[i].emplace_back(0);
         }
 }
 
-void NeutralNetwork::print_weights()
+void NeutralNetwork::printValues()
 {
     for (int i = 0; i < this->topology.size(); i++)
     {
         cout << "Layer: " << i << "\n";
         for (int j = 0; j < this->topology[i]; j++)
-            cout << this->weights[i][j] << " ";
+            cout << this->values[i][j] << " ";
 
         cout << "\n";
     }
@@ -80,7 +83,38 @@ double NeutralNetwork::activation(double x)
     }
     else if (this->activationFunction == SWISH)
         return x / (1 + exp(-x));
-    
+}
+
+void NeutralNetwork::forwardPropagation()
+{
+    for (int layer = 1; layer < this->topology.size(); layer++)
+        for (int neuron = 0; neuron < this->topology[layer]; neuron++)
+        {
+            double neuronValue = this->bias[layer][neuron];
+            for (int prevNeuron = 0; prevNeuron < this->topology[layer - 1]; prevNeuron++)
+                neuronValue += this->weights[layer - 1][prevNeuron] * this->values[layer - 1][prevNeuron];
+
+            neuronValue = activation(neuronValue);
+            this->values[layer][neuron] = neuronValue;
+        }
+}
+
+void NeutralNetwork::train(int epochs, const vector<double> &data)
+{
+    if (data.size() != this->topology[0])
+        throw invalid_argument("First layer has different size than the data");
+
+    for (int i = 0; i < data.size(); i++)
+        this->values[0][i] = data[i];
+
+    for (int i = 0; i < epochs; i++)
+    {
+        forwardPropagation();
+        // calc error
+
+        // backward propagation
+        // update weights
+    }
 }
 
 NeutralNetwork::~NeutralNetwork() {}

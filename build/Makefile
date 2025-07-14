@@ -153,6 +153,30 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/myapp.dir/build.make CMakeFiles/myapp.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+src/NeutralNetwork.o: src/NeutralNetwork.cpp.o
+.PHONY : src/NeutralNetwork.o
+
+# target to build an object file
+src/NeutralNetwork.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/myapp.dir/build.make CMakeFiles/myapp.dir/src/NeutralNetwork.cpp.o
+.PHONY : src/NeutralNetwork.cpp.o
+
+src/NeutralNetwork.i: src/NeutralNetwork.cpp.i
+.PHONY : src/NeutralNetwork.i
+
+# target to preprocess a source file
+src/NeutralNetwork.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/myapp.dir/build.make CMakeFiles/myapp.dir/src/NeutralNetwork.cpp.i
+.PHONY : src/NeutralNetwork.cpp.i
+
+src/NeutralNetwork.s: src/NeutralNetwork.cpp.s
+.PHONY : src/NeutralNetwork.s
+
+# target to generate assembly for a file
+src/NeutralNetwork.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/myapp.dir/build.make CMakeFiles/myapp.dir/src/NeutralNetwork.cpp.s
+.PHONY : src/NeutralNetwork.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -165,6 +189,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... src/NeutralNetwork.o"
+	@echo "... src/NeutralNetwork.i"
+	@echo "... src/NeutralNetwork.s"
 .PHONY : help
 
 
