@@ -1,4 +1,4 @@
-#include "include/NeutralNetwork.h"
+#include "include/NeuralNetwork.h"
 #include <iostream>
 #include <vector>
 
@@ -11,14 +11,15 @@ int main()
 
     Activation activationFunction = SIGMOID;
 
-    NeutralNetwork MyNetwork(topology, 0.05, activationFunction);
+    NeuralNetwork MyNetwork(topology, 0.05, activationFunction);
 
     MyNetwork.initializeWeights();
     MyNetwork.printValues();
 
     vector<double> data = {5, 3, 4};
+    vector<int> expected = {1};
 
-    MyNetwork.train(1, data);
+    MyNetwork.train(1, data, expected);
     MyNetwork.printValues();
 
     return 0;

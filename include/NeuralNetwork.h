@@ -13,22 +13,25 @@ enum Activation
     SELU,
     SWISH,
 };
-class NeutralNetwork
+class NeuralNetwork
 {
 public:
-    NeutralNetwork(const vector<int> &topology, double learningRate, Activation activation);
-    ~NeutralNetwork();
+    NeuralNetwork(const vector<int> &topology, double learningRate, Activation activation);
+    ~NeuralNetwork();
 
     void initializeWeights();
     void printValues();
     double activation(double x);
-    void train(int epochs, const vector<double> &data);
+    double activationDerivative(double x);
+    void train(int epochs, const vector<double> &data, const vector<int> &expected);
     void forwardPropagation();
+    void backwardPropagateError(const vector<int> &expected);
 
 private:
     vector<vector<double>> weights;
     vector<vector<double>> bias;
     vector<vector<double>> values;
+    vector<vector<double>> deltas;
     vector<int> topology;
     double learningRate;
     Activation activationFunction;

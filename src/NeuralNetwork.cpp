@@ -1,4 +1,4 @@
-#include "../include/NeutralNetwork.h"
+#include "../include/NeuralNetwork.h"
 #include <cmath>
 #include <iostream>
 #include <random>
@@ -6,7 +6,7 @@
 
 using namespace std;
 
-NeutralNetwork::NeutralNetwork(const vector<int> &topology, double learningRate = 0.05, Activation activation = SIGMOID)
+NeuralNetwork::NeuralNetwork(const vector<int> &topology, double learningRate = 0.05, Activation activation = SIGMOID)
 {
     this->topology = topology;
     this->learningRate = learningRate;
@@ -15,9 +15,10 @@ NeutralNetwork::NeutralNetwork(const vector<int> &topology, double learningRate 
     this->weights.resize(topology.size());
     this->bias.resize(topology.size());
     this->values.resize(topology.size());
+    this->deltas.resize(topology.size());
 }
 
-void NeutralNetwork::initializeWeights()
+void NeuralNetwork::initializeWeights()
 {
     uniform_real_distribution<double> unif(0, 1);
 
@@ -26,9 +27,11 @@ void NeutralNetwork::initializeWeights()
     for (int i = 0; i < this->topology.size(); i++)
         for (int j = 0; j < this->topology[i]; j++)
         {
+            this->values[i].emplace_back(0);
+            this->deltas[i].emplace_back(0);
+
             double weight = unif(re);
             this->weights[i].emplace_back(weight);
-            this->values[i].emplace_back(0);
 
             if (i < this->topology.size() - 1 && i > 0)
             {
@@ -40,19 +43,22 @@ void NeutralNetwork::initializeWeights()
         }
 }
 
-void NeutralNetwork::printValues()
+void NeuralNetwork::printValues()
 {
     for (int i = 0; i < this->topology.size(); i++)
     {
         cout << "Layer: " << i << "\n";
         for (int j = 0; j < this->topology[i]; j++)
-            cout << this->values[i][j] << " ";
+        {
+            cout << this->values[i][j] << "\n";
+            cout << this->deltas[i][j] << "\n";
+        }
 
         cout << "\n";
     }
 }
 
-double NeutralNetwork::activation(double x)
+double NeuralNetwork::activation(double x)
 {
     const double alpha = 1.6733;
     const double lambda = 1.0507;
@@ -84,8 +90,13 @@ double NeutralNetwork::activation(double x)
     else if (this->activationFunction == SWISH)
         return x / (1 + exp(-x));
 }
+double NeuralNetwork::activationDerivative(double x)
+{
+    if (this->activationFunction == SIGMOID)
+        return x * (1.0 - x);
+}
 
-void NeutralNetwork::forwardPropagation()
+void NeuralNetwork::forwardPropagation()
 {
     for (int layer = 1; layer < this->topology.size(); layer++)
         for (int neuron = 0; neuron < this->topology[layer]; neuron++)
@@ -99,7 +110,28 @@ void NeutralNetwork::forwardPropagation()
         }
 }
 
-void NeutralNetwork::train(int epochs, const vector<double> &data)
+void NeuralNetwork::backwardPropagateError(const vector<int> &expected)
+{
+    for (int layer = this->topology.size() - 1; layer > 0; layer--)
+    {
+        if (layer == this->topology.size() - 1)
+            for (int neuron = 0; neuron < expected.size(); neuron++)
+                this->deltas[layer][neuron] = (this->values[layer][neuron] - expected[neuron]) * activationDerivative(this->values[layer][neuron]);
+
+        else
+            for (int neuron = 0; neuron < topology[layer]; neuron++)
+            {
+                double error = 0.0;
+
+                for (int nextNeuron = 0; nextNeuron < topology[layer + 1]; nextNeuron++)
+                    error += this->weights[layer + 1][nextNeuron] * this->deltas[layer + 1][nextNeuron] * activationDerivative(this->values[layer][neuron]);
+
+                this->deltas[layer][neuron] = error;
+            }
+    }
+}
+
+void NeuralNetwork::train(int epochs, const vector<double> &data, const vector<int> &expected)
 {
     if (data.size() != this->topology[0])
         throw invalid_argument("First layer has different size than the data");
@@ -110,11 +142,9 @@ void NeutralNetwork::train(int epochs, const vector<double> &data)
     for (int i = 0; i < epochs; i++)
     {
         forwardPropagation();
-        // calc error
 
-        // backward propagation
-        // update weights
+        backwardPropagateError(expected);
     }
 }
 
-NeutralNetwork::~NeutralNetwork() {}
+NeuralNetwork::~NeuralNetwork() {}
