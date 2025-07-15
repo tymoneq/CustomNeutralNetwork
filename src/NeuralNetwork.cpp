@@ -141,7 +141,7 @@ int NeuralNetwork::predict(const vector<double> &data)
     forwardPropagation();
 
     int answer = 0;
-     double maxVal = this->values[this->topology.size() - 1][0];
+    double maxVal = this->values[this->topology.size() - 1][0];
 
     if (topology.back() > 1)
     {
@@ -166,6 +166,7 @@ int NeuralNetwork::predict(const vector<double> &data)
 
 void NeuralNetwork::train(int epochs, const vector<vector<double>> &data, const vector<int> &expected)
 {
+    initializeWeights();
 
     for (int epoch = 0; epoch < epochs; epoch++)
     {
