@@ -83,30 +83,30 @@ CMakeFiles/myapp.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/myapp.dir/main.cpp.s"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tymon/coding/CustomNeutralNetwork/main.cpp -o CMakeFiles/myapp.dir/main.cpp.s
 
-CMakeFiles/myapp.dir/src/NeutralNetwork.cpp.o: CMakeFiles/myapp.dir/flags.make
-CMakeFiles/myapp.dir/src/NeutralNetwork.cpp.o: ../src/NeutralNetwork.cpp
-CMakeFiles/myapp.dir/src/NeutralNetwork.cpp.o: CMakeFiles/myapp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tymon/coding/CustomNeutralNetwork/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/myapp.dir/src/NeutralNetwork.cpp.o"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/myapp.dir/src/NeutralNetwork.cpp.o -MF CMakeFiles/myapp.dir/src/NeutralNetwork.cpp.o.d -o CMakeFiles/myapp.dir/src/NeutralNetwork.cpp.o -c /home/tymon/coding/CustomNeutralNetwork/src/NeutralNetwork.cpp
+CMakeFiles/myapp.dir/src/NeuralNetwork.cpp.o: CMakeFiles/myapp.dir/flags.make
+CMakeFiles/myapp.dir/src/NeuralNetwork.cpp.o: ../src/NeuralNetwork.cpp
+CMakeFiles/myapp.dir/src/NeuralNetwork.cpp.o: CMakeFiles/myapp.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tymon/coding/CustomNeutralNetwork/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/myapp.dir/src/NeuralNetwork.cpp.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/myapp.dir/src/NeuralNetwork.cpp.o -MF CMakeFiles/myapp.dir/src/NeuralNetwork.cpp.o.d -o CMakeFiles/myapp.dir/src/NeuralNetwork.cpp.o -c /home/tymon/coding/CustomNeutralNetwork/src/NeuralNetwork.cpp
 
-CMakeFiles/myapp.dir/src/NeutralNetwork.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/myapp.dir/src/NeutralNetwork.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tymon/coding/CustomNeutralNetwork/src/NeutralNetwork.cpp > CMakeFiles/myapp.dir/src/NeutralNetwork.cpp.i
+CMakeFiles/myapp.dir/src/NeuralNetwork.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/myapp.dir/src/NeuralNetwork.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tymon/coding/CustomNeutralNetwork/src/NeuralNetwork.cpp > CMakeFiles/myapp.dir/src/NeuralNetwork.cpp.i
 
-CMakeFiles/myapp.dir/src/NeutralNetwork.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/myapp.dir/src/NeutralNetwork.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tymon/coding/CustomNeutralNetwork/src/NeutralNetwork.cpp -o CMakeFiles/myapp.dir/src/NeutralNetwork.cpp.s
+CMakeFiles/myapp.dir/src/NeuralNetwork.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/myapp.dir/src/NeuralNetwork.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tymon/coding/CustomNeutralNetwork/src/NeuralNetwork.cpp -o CMakeFiles/myapp.dir/src/NeuralNetwork.cpp.s
 
 # Object files for target myapp
 myapp_OBJECTS = \
 "CMakeFiles/myapp.dir/main.cpp.o" \
-"CMakeFiles/myapp.dir/src/NeutralNetwork.cpp.o"
+"CMakeFiles/myapp.dir/src/NeuralNetwork.cpp.o"
 
 # External object files for target myapp
 myapp_EXTERNAL_OBJECTS =
 
 myapp: CMakeFiles/myapp.dir/main.cpp.o
-myapp: CMakeFiles/myapp.dir/src/NeutralNetwork.cpp.o
+myapp: CMakeFiles/myapp.dir/src/NeuralNetwork.cpp.o
 myapp: CMakeFiles/myapp.dir/build.make
 myapp: CMakeFiles/myapp.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/tymon/coding/CustomNeutralNetwork/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable myapp"

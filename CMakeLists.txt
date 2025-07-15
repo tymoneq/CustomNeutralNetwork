@@ -21,7 +21,7 @@ endif()
 
 
 
-add_executable(myapp main.cpp src/NeutralNetwork.cpp)
+add_executable(myapp main.cpp src/NeuralNetwork.cpp)
 
 # Add include directories
 target_include_directories(myapp PRIVATE include)

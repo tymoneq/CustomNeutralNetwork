@@ -9,7 +9,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/tymon/coding/CustomNeutralNetwork/main.cpp" "CMakeFiles/myapp.dir/main.cpp.o" "gcc" "CMakeFiles/myapp.dir/main.cpp.o.d"
-  "/home/tymon/coding/CustomNeutralNetwork/src/NeutralNetwork.cpp" "CMakeFiles/myapp.dir/src/NeutralNetwork.cpp.o" "gcc" "CMakeFiles/myapp.dir/src/NeutralNetwork.cpp.o.d"
+  "/home/tymon/coding/CustomNeutralNetwork/src/NeuralNetwork.cpp" "CMakeFiles/myapp.dir/src/NeuralNetwork.cpp.o" "gcc" "CMakeFiles/myapp.dir/src/NeuralNetwork.cpp.o.d"
   )
 
 # Targets to which this target links.

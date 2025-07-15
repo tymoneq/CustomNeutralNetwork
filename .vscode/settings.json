@@ -64,5 +64,6 @@
     "valarray": "cpp",
     "random": "cpp",
     "iostream": "cpp"
-  }
+  },
+  "C_Cpp.default.compilerPath": "/usr/bin/gcc-11"
 }

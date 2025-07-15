@@ -14,13 +14,13 @@ int main()
     NeuralNetwork MyNetwork(topology, 0.05, activationFunction);
 
     MyNetwork.initializeWeights();
-    MyNetwork.printValues();
 
-    vector<double> data = {5, 3, 4};
-    vector<int> expected = {1};
 
-    MyNetwork.train(1, data, expected);
-    MyNetwork.printValues();
+    vector<vector<double>> data = {{5, 3, 4}};
+    vector<vector<int>> expected = {{1}};
+
+    MyNetwork.train(100, data, expected);
+
 
     return 0;
 }

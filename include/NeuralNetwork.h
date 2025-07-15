@@ -7,12 +7,9 @@ using namespace std;
 enum Activation
 {
     SIGMOID,
-    TANH,
-    RELU,
-    ELU,
-    SELU,
-    SWISH,
+    TANH
 };
+
 class NeuralNetwork
 {
 public:
@@ -23,9 +20,10 @@ public:
     void printValues();
     double activation(double x);
     double activationDerivative(double x);
-    void train(int epochs, const vector<double> &data, const vector<int> &expected);
+    void train(int epochs, const vector<vector<double>> &data, const vector<vector<int>> &expected);
     void forwardPropagation();
     void backwardPropagateError(const vector<int> &expected);
+    void updateWeights();
 
 private:
     vector<vector<double>> weights;

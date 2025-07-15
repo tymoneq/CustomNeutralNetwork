@@ -153,29 +153,29 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/myapp.dir/build.make CMakeFiles/myapp.dir/main.cpp.s
 .PHONY : main.cpp.s
 
-src/NeutralNetwork.o: src/NeutralNetwork.cpp.o
-.PHONY : src/NeutralNetwork.o
+src/NeuralNetwork.o: src/NeuralNetwork.cpp.o
+.PHONY : src/NeuralNetwork.o
 
 # target to build an object file
-src/NeutralNetwork.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/myapp.dir/build.make CMakeFiles/myapp.dir/src/NeutralNetwork.cpp.o
-.PHONY : src/NeutralNetwork.cpp.o
+src/NeuralNetwork.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/myapp.dir/build.make CMakeFiles/myapp.dir/src/NeuralNetwork.cpp.o
+.PHONY : src/NeuralNetwork.cpp.o
 
-src/NeutralNetwork.i: src/NeutralNetwork.cpp.i
-.PHONY : src/NeutralNetwork.i
+src/NeuralNetwork.i: src/NeuralNetwork.cpp.i
+.PHONY : src/NeuralNetwork.i
 
 # target to preprocess a source file
-src/NeutralNetwork.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/myapp.dir/build.make CMakeFiles/myapp.dir/src/NeutralNetwork.cpp.i
-.PHONY : src/NeutralNetwork.cpp.i
+src/NeuralNetwork.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/myapp.dir/build.make CMakeFiles/myapp.dir/src/NeuralNetwork.cpp.i
+.PHONY : src/NeuralNetwork.cpp.i
 
-src/NeutralNetwork.s: src/NeutralNetwork.cpp.s
-.PHONY : src/NeutralNetwork.s
+src/NeuralNetwork.s: src/NeuralNetwork.cpp.s
+.PHONY : src/NeuralNetwork.s
 
 # target to generate assembly for a file
-src/NeutralNetwork.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/myapp.dir/build.make CMakeFiles/myapp.dir/src/NeutralNetwork.cpp.s
-.PHONY : src/NeutralNetwork.cpp.s
+src/NeuralNetwork.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/myapp.dir/build.make CMakeFiles/myapp.dir/src/NeuralNetwork.cpp.s
+.PHONY : src/NeuralNetwork.cpp.s
 
 # Help Target
 help:
@@ -189,9 +189,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... src/NeutralNetwork.o"
-	@echo "... src/NeutralNetwork.i"
-	@echo "... src/NeutralNetwork.s"
+	@echo "... src/NeuralNetwork.o"
+	@echo "... src/NeuralNetwork.i"
+	@echo "... src/NeuralNetwork.s"
 .PHONY : help
 
 
