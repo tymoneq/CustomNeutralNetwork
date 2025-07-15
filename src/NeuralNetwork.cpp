@@ -11,6 +11,7 @@ NeuralNetwork::NeuralNetwork(const vector<int> &topology, double learningRate = 
     this->topology = topology;
     this->learningRate = learningRate;
     this->activationFunction = activation;
+    this->initialLearningRate = learningRate;
 
     this->weights.resize(topology.size());
     this->bias.resize(topology.size());
@@ -20,27 +21,25 @@ NeuralNetwork::NeuralNetwork(const vector<int> &topology, double learningRate = 
 
 void NeuralNetwork::initializeWeights()
 {
-    uniform_real_distribution<double> unif(0, 1);
+    uniform_real_distribution<double> unif(-1.0, 1.0);
 
     default_random_engine re;
 
     for (int i = 0; i < this->topology.size(); i++)
+    {
+        this->bias[i].resize(topology[i], 0);
+        this->deltas[i].resize(topology[i], 0);
+        this->values[i].resize(topology[i], 0);
+        this->weights[i].resize(topology[i], 0);
+
         for (int j = 0; j < this->topology[i]; j++)
         {
-            this->values[i].emplace_back(0);
-            this->deltas[i].emplace_back(0);
-
-            double weight = unif(re);
-            this->weights[i].emplace_back(weight);
+            this->weights[i][j] = unif(re);
 
             if (i < this->topology.size() - 1 && i > 0)
-            {
-                double bias = unif(re);
-                this->bias[i].emplace_back(bias);
-            }
-            else
-                this->bias[i].emplace_back(0);
+                this->bias[i][j] = unif(re);
         }
+    }
 }
 
 void NeuralNetwork::printValues()
@@ -71,6 +70,9 @@ double NeuralNetwork::activationDerivative(double x)
 {
     if (this->activationFunction == SIGMOID)
         return x * (1.0 - x);
+
+    else if (this->activationFunction == TANH)
+        return 1.0 - (x * x);
 }
 
 void NeuralNetwork::forwardPropagation()
@@ -121,10 +123,48 @@ void NeuralNetwork::updateWeights()
         }
 }
 
+void NeuralNetwork::updateLearningRate(int epoch)
+{
+    this->learningRate = this->initialLearningRate * exp(-0.01 * epoch);
+}
+
+int NeuralNetwork::predict(const vector<double> &data)
+{
+    if (data.size() != this->topology[0])
+        throw invalid_argument("First layer has different size than the data");
+
+    for (int i = 0; i < data.size(); i++)
+        this->values[0][i] = data[i];
+    forwardPropagation();
+
+    int answer = 0;
+    double val = -1e9;
+
+    if (topology.back() > 1)
+    {
+        for (int i = 0; i < this->topology.back(); i++)
+            if (val < this->values[this->topology.size() - 1][i])
+            {
+                val = this->values[this->topology.size() - 1][i];
+                answer = i;
+            }
+    }
+
+    else
+    {
+        if (this->values[topology.size() - 1][0] >= 0.5)
+            answer = 1;
+        else
+            answer = 0;
+    }
+
+    return answer;
+}
+
 void NeuralNetwork::train(int epochs, const vector<vector<double>> &data, const vector<vector<int>> &expected)
 {
 
-    for (int i = 0; i < epochs; i++)
+    for (int epoch = 0; epoch < epochs; epoch++)
     {
         double sumError = 0.0;
         for (int rowData = 0; rowData < data.size(); rowData++)
@@ -141,14 +181,15 @@ void NeuralNetwork::train(int epochs, const vector<vector<double>> &data, const 
             forwardPropagation();
 
             // calculating error
-            int lastLayer = this->topology.back();
-            for (int j = 0; j < lastLayer; j++)
+            int lastLayer = this->topology.size() - 1;
+            for (int j = 0; j < this->topology.back(); j++)
                 sumError += (this->values[lastLayer][j] - expected[rowData][j]) * (this->values[lastLayer][j] - expected[rowData][j]);
 
             backwardPropagateError(expected[rowData]);
             updateWeights();
+            updateLearningRate(epoch);
         }
-        cout << ">epoch" << i << ", lrate=" << this->learningRate << ", error" << sumError << "\n";
+        cout << ">epoch" << epoch << ", lrate=" << this->learningRate << ", error" << sumError << "\n";
     }
 }
 

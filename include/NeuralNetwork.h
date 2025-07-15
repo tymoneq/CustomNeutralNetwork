@@ -24,6 +24,8 @@ public:
     void forwardPropagation();
     void backwardPropagateError(const vector<int> &expected);
     void updateWeights();
+    void updateLearningRate(int epoch);
+    int predict(const vector<double> &data);
 
 private:
     vector<vector<double>> weights;
@@ -32,6 +34,7 @@ private:
     vector<vector<double>> deltas;
     vector<int> topology;
     double learningRate;
+    double initialLearningRate;
     Activation activationFunction;
 };
 
