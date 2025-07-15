@@ -20,15 +20,15 @@ public:
     void printValues();
     double activation(double x);
     double activationDerivative(double x);
-    void train(int epochs, const vector<vector<double>> &data, const vector<vector<int>> &expected);
+    void train(int epochs, const vector<vector<double>> &data, const vector<int> &expected);
     void forwardPropagation();
-    void backwardPropagateError(const vector<int> &expected);
+    void backwardPropagateError(const int &expected);
     void updateWeights();
     void updateLearningRate(int epoch);
     int predict(const vector<double> &data);
 
 private:
-    vector<vector<double>> weights;
+    vector<vector<vector<double>>> weights;
     vector<vector<double>> bias;
     vector<vector<double>> values;
     vector<vector<double>> deltas;
