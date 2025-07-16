@@ -92,6 +92,8 @@ void NeuralNetwork::forwardPropagation()
             neuronValue = activation(neuronValue);
             this->values[layer][neuron] = neuronValue;
         }
+
+    applySoftmax();
 }
 
 void NeuralNetwork::backwardPropagateError(const vector<int> &expected)
@@ -100,7 +102,7 @@ void NeuralNetwork::backwardPropagateError(const vector<int> &expected)
     {
         if (layer == this->topology.size() - 1)
             for (int neuron = 0; neuron < this->topology.back(); neuron++)
-                this->deltas[layer][neuron] = (this->values[layer][neuron] - expected) * activationDerivative(this->values[layer][neuron]);
+                this->deltas[layer][neuron] = (this->values[layer][neuron] - expected[neuron]) * activationDerivative(this->values[layer][neuron]);
 
         else
             for (int neuron = 0; neuron < topology[layer]; neuron++)
@@ -164,6 +166,20 @@ int NeuralNetwork::predict(const vector<double> &data)
     return answer;
 }
 
+void NeuralNetwork::applySoftmax()
+{
+    int outputLayer = this->topology.size() - 1;
+    double sum = 0.0;
+
+    for (int i = 0; i < this->topology.back(); i++)
+    {
+        this->values[outputLayer][i] = exp(this->values[outputLayer][i]);
+        sum += this->values[outputLayer][i];
+    }
+    for (int i = 0; i < this->topology.back(); i++)
+        this->values[outputLayer][i] /= sum;
+}
+
 void NeuralNetwork::train(int epochs, const vector<vector<double>> &data, const vector<vector<int>> &expected)
 {
     initializeWeights();
@@ -184,13 +200,18 @@ void NeuralNetwork::train(int epochs, const vector<vector<double>> &data, const 
             // calculating error
             int lastLayer = this->topology.size() - 1;
             for (int j = 0; j < this->topology.back(); j++)
-                sumError += (this->values[lastLayer][j] - expected[rowData]) * (this->values[lastLayer][j] - expected[rowData]);
-
+            {
+                double yTrue = expected[rowData][j];
+                double yPred = this->values[lastLayer][j];
+                double epsilon = 1e-12;
+                sumError -= yTrue * log(yPred + epsilon);
+            }
             backwardPropagateError(expected[rowData]);
             updateWeights();
         }
         updateLearningRate(epoch);
-        cout << ">epoch" << epoch << ", lrate=" << this->learningRate << ", error" << sumError << "\n";
+        sumError /= data.size();
+        cout << ">epoch" << epoch << ", lrate=" << this->learningRate << ", error=" << sumError << "\n";
     }
 }
 

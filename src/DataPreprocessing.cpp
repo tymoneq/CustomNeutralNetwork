@@ -13,7 +13,7 @@ DataSplitResult splitTestSet(vector<vector<double>> &data, double trainSize)
     shuffle(data.begin(), data.end(), g);
 
     vector<int> classType;
-    vector<vector<double>> dataLabels;
+    vector<vector<double>> dataLabels(data.size());
     for (int i = 0; i < data.size(); i++)
     {
         classType.emplace_back(data[i][data[i].size() - 1]);
@@ -69,7 +69,7 @@ vector<vector<int>> encoder(vector<int> &data)
     for (auto w : data)
         types.insert(w);
 
-    vector<vector<int>> encodedResults(types.size(), vector<int>(data.size(), 0));
+    vector<vector<int>> encodedResults(data.size(), vector<int>(types.size(), 0));
 
     for (int i = 0; i < data.size(); i++)
         encodedResults[i][data[i] - 1] = 1;

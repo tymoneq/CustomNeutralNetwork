@@ -26,6 +26,7 @@ public:
     void updateWeights();
     void updateLearningRate(int epoch);
     int predict(const vector<double> &data);
+    void applySoftmax();
 
 private:
     vector<vector<vector<double>>> weights;
