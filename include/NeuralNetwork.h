@@ -20,9 +20,9 @@ public:
     void printValues();
     double activation(double x);
     double activationDerivative(double x);
-    void train(int epochs, const vector<vector<double>> &data, const vector<int> &expected);
+    void train(int epochs, const vector<vector<double>> &data, const vector<vector<int>> &expected);
     void forwardPropagation();
-    void backwardPropagateError(const int &expected);
+    void backwardPropagateError(const vector<int> &expected);
     void updateWeights();
     void updateLearningRate(int epoch);
     int predict(const vector<double> &data);

@@ -153,6 +153,30 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/myapp.dir/build.make CMakeFiles/myapp.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+src/DataPreprocessing.o: src/DataPreprocessing.cpp.o
+.PHONY : src/DataPreprocessing.o
+
+# target to build an object file
+src/DataPreprocessing.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/myapp.dir/build.make CMakeFiles/myapp.dir/src/DataPreprocessing.cpp.o
+.PHONY : src/DataPreprocessing.cpp.o
+
+src/DataPreprocessing.i: src/DataPreprocessing.cpp.i
+.PHONY : src/DataPreprocessing.i
+
+# target to preprocess a source file
+src/DataPreprocessing.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/myapp.dir/build.make CMakeFiles/myapp.dir/src/DataPreprocessing.cpp.i
+.PHONY : src/DataPreprocessing.cpp.i
+
+src/DataPreprocessing.s: src/DataPreprocessing.cpp.s
+.PHONY : src/DataPreprocessing.s
+
+# target to generate assembly for a file
+src/DataPreprocessing.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/myapp.dir/build.make CMakeFiles/myapp.dir/src/DataPreprocessing.cpp.s
+.PHONY : src/DataPreprocessing.cpp.s
+
 src/NeuralNetwork.o: src/NeuralNetwork.cpp.o
 .PHONY : src/NeuralNetwork.o
 
@@ -189,6 +213,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... src/DataPreprocessing.o"
+	@echo "... src/DataPreprocessing.i"
+	@echo "... src/DataPreprocessing.s"
 	@echo "... src/NeuralNetwork.o"
 	@echo "... src/NeuralNetwork.i"
 	@echo "... src/NeuralNetwork.s"

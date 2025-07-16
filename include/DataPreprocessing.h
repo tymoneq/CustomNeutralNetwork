@@ -12,7 +12,17 @@ struct DataSplitResult
     vector<vector<double>> trainX, testX;
     vector<int> trainY, testY;
 };
+struct HotEncodedData
+{
+    vector<vector<int>> trainY, testY;
+};
 
 DataSplitResult splitTestSet(vector<vector<double>> &data, double trainSize);
 
-#endif DATA_PREPROCESSING
+void scaler(vector<vector<double>> &data);
+void standardScaler(DataSplitResult &data);
+
+vector<vector<int>> encoder(vector<int> &data);
+HotEncodedData oneHotEncoding(DataSplitResult &data);
+
+#endif

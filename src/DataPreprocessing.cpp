@@ -2,7 +2,7 @@
 #include <vector>
 #include <algorithm>
 #include <random>
-
+#include <set>
 using namespace std;
 
 DataSplitResult splitTestSet(vector<vector<double>> &data, double trainSize)
@@ -32,4 +32,58 @@ DataSplitResult splitTestSet(vector<vector<double>> &data, double trainSize)
     vector<int> testY(classType.begin() + splitIndex, classType.end());
 
     return {trainX, testX, trainY, testY};
+}
+
+void scaler(vector<vector<double>> &data)
+{
+    for (int col = 0; col < data.size(); col++)
+    {
+        double mean = 0.0;
+        double standardDeviation = 0.0;
+        for (int row = 0; row < data[col].size(); row++)
+            mean += data[col][row];
+
+        mean /= (double)data[col].size();
+
+        for (int row = 0; row < data[col].size(); row++)
+            standardDeviation += pow((double)data[col][row] - mean, 2);
+
+        standardDeviation = sqrt(standardDeviation / data[col].size());
+
+        for (int row = 0; row < data[col].size(); row++)
+            data[col][row] = (data[col][row] - mean) / standardDeviation;
+    }
+}
+
+void standardScaler(DataSplitResult &data)
+{
+
+    scaler(data.trainX);
+    scaler(data.testX);
+}
+
+vector<vector<int>> encoder(vector<int> &data)
+{
+    set<int> types;
+
+    for (auto w : data)
+        types.insert(w);
+
+    vector<vector<int>> encodedResults(types.size(), vector<int>(data.size(), 0));
+
+    for (int i = 0; i < data.size(); i++)
+        encodedResults[i][data[i] - 1] = 1;
+
+    return encodedResults;
+}
+
+HotEncodedData oneHotEncoding(DataSplitResult &data)
+{
+
+    HotEncodedData encodedData;
+
+    encodedData.trainY = encoder(data.trainY);
+    encodedData.testY = encoder(data.testY);
+
+    return encodedData;
 }

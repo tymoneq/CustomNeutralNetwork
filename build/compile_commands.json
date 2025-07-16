@@ -8,5 +8,10 @@
   "directory": "/home/tymon/coding/CustomNeutralNetwork/build",
   "command": "/usr/bin/g++ -DDEBUG -I/home/tymon/coding/CustomNeutralNetwork/include  -g -O0 -g -std=gnu++17 -o CMakeFiles/myapp.dir/src/NeuralNetwork.cpp.o -c /home/tymon/coding/CustomNeutralNetwork/src/NeuralNetwork.cpp",
   "file": "/home/tymon/coding/CustomNeutralNetwork/src/NeuralNetwork.cpp"
+},
+{
+  "directory": "/home/tymon/coding/CustomNeutralNetwork/build",
+  "command": "/usr/bin/g++ -DDEBUG -I/home/tymon/coding/CustomNeutralNetwork/include  -g -O0 -g -std=gnu++17 -o CMakeFiles/myapp.dir/src/DataPreprocessing.cpp.o -c /home/tymon/coding/CustomNeutralNetwork/src/DataPreprocessing.cpp",
+  "file": "/home/tymon/coding/CustomNeutralNetwork/src/DataPreprocessing.cpp"
 }
 ]

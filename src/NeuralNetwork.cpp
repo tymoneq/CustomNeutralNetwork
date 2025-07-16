@@ -94,7 +94,7 @@ void NeuralNetwork::forwardPropagation()
         }
 }
 
-void NeuralNetwork::backwardPropagateError(const int &expected)
+void NeuralNetwork::backwardPropagateError(const vector<int> &expected)
 {
     for (int layer = this->topology.size() - 1; layer > 0; layer--)
     {
@@ -164,7 +164,7 @@ int NeuralNetwork::predict(const vector<double> &data)
     return answer;
 }
 
-void NeuralNetwork::train(int epochs, const vector<vector<double>> &data, const vector<int> &expected)
+void NeuralNetwork::train(int epochs, const vector<vector<double>> &data, const vector<vector<int>> &expected)
 {
     initializeWeights();
 
