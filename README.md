@@ -61,7 +61,7 @@ The example will classify types of wheat that are in the seeds_dataset.txt
 
 
 
-To use the NeuralNetwork class in your own C++ applications:
+## To use the NeuralNetwork class in your own C++ applications:
 
 Include the necessary header files (e.g., NeuralNetwork.h).
 
